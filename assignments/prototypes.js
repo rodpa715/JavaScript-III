@@ -132,3 +132,69 @@ CharacterStats.prototype.takeDamage = function(){
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  ///////////
+  //VILLAIN//
+  ///////////
+  function Villain(attributes){
+    Humanoid.call(this, attributes)
+
+  }
+  Villain.prototype = Object.create(Humanoid.prototype)
+  //DEAL DAMAGE//
+  Villain.prototype.dealDamage = function(object, dmg = 10){
+    object.healthPoints -= dmg + 0.1
+    console.log(`${this.name} just dealt ${dmg.toFixed(0)} DMG to ${object.name}, he now has ${object.healthPoints.toFixed(0)} HP`)
+    if (object.healthPoints < 0){
+      console.log(object.destroy())
+    }
+  }
+  ////////
+  //HERO//
+  ////////
+  function Hero(attributes){
+    Humanoid.call(this, attributes)
+  }
+  Hero.prototype = Object.create(Humanoid.prototype)
+  //DEAL DAMAGE//
+  Hero.prototype.dealDamage = function(object, dmg = 10){
+    object.healthPoints -= dmg + 0.1
+    console.log(`${this.name} just dealt ${dmg.toFixed(0)} DMG to ${object.name}, he now has ${object.healthPoints.toFixed(0)} HP`)
+    if (luffy.healthPoints < 0){
+      console.log(object.destroy())
+    }
+  }
+///OBJECT
+  const kaido = new Villain({
+    createdAt: new Date(),
+    dimensions: {
+      length: 2,
+      width: 3,
+      height: 6,
+    },
+    healthPoints: 300,
+    name: 'Kaido',
+    team: 'Beasts Pirates',
+    weapons: [
+      'Giant Sword',
+      "Conqueror's Haki",
+    ],
+    language: 'Japanese',
+  });
+
+  const luffy = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 1,
+      height: 2,
+    },
+    healthPoints: 150,
+    name: 'Monkey D. Luffy',
+    team: 'Straw Hats Pirates',
+    weapons: [
+      'Gomu Gomu no mi',
+      "Conqueror's Haki",
+    ],
+    language: 'Japanese',
+  });
