@@ -143,10 +143,11 @@ CharacterStats.prototype.takeDamage = function(){
   Villain.prototype = Object.create(Humanoid.prototype)
   //DEAL DAMAGE//
   Villain.prototype.dealDamage = function(object, dmg = 10){
-    object.healthPoints -= dmg + 0.1
-    console.log(`${this.name} just dealt ${dmg.toFixed(0)} DMG to ${object.name}, he now has ${object.healthPoints.toFixed(0)} HP`)
-    if (object.healthPoints < 0){
+    object.healthPoints -= dmg
+    if (object.healthPoints <= 0){
       console.log(object.destroy())
+    }else{
+    console.log(`${this.name} just dealt ${dmg} DMG to ${object.name}, he now has ${object.healthPoints} HP`)
     }
   }
   ////////
@@ -158,13 +159,17 @@ CharacterStats.prototype.takeDamage = function(){
   Hero.prototype = Object.create(Humanoid.prototype)
   //DEAL DAMAGE//
   Hero.prototype.dealDamage = function(object, dmg = 10){
-    object.healthPoints -= dmg + 0.1
-    console.log(`${this.name} just dealt ${dmg.toFixed(0)} DMG to ${object.name}, he now has ${object.healthPoints.toFixed(0)} HP`)
-    if (luffy.healthPoints < 0){
+    object.healthPoints -= dmg
+    if (object.healthPoints <= 0){
       console.log(object.destroy())
+    }else{
+    console.log(`${this.name} just dealt ${dmg} DMG to ${object.name}, he now has ${object.healthPoints} HP`)
     }
   }
-///OBJECT
+
+
+///OBJECTS
+
   const kaido = new Villain({
     createdAt: new Date(),
     dimensions: {
